@@ -7,3 +7,5 @@ Temp/
 UserSettings
 *.vsconfig
 *.sln
+Assets/_/
+*.csproj
