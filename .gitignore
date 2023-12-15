@@ -1,0 +1,9 @@
+Library/
+Assets/*.meta
+Logs/
+Packages/
+ProjectSettings/
+Temp/
+UserSettings
+*.vsconfig
+*.sln
