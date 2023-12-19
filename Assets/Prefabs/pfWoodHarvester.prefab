@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4622831745979809535}
   m_Layer: 0
-  m_Name: WoodHarvester
+  m_Name: pfWoodHarvester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
