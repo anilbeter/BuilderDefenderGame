@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
 
-  [SerializeField] private BuildingTypeSO buildingType;
   private Camera mainCamera;
+  private BuildingTypeListSO buildingTypeList;
+  private BuildingTypeSO buildingType;
 
   private void Start()
   {
-    // Looking for BuildingTypeList file in Resources folder
-    Resources.Load<BuildingTypeListSO>("BuildingTypeList");
-
     mainCamera = Camera.main;
+
+    buildingTypeList = Resources.Load<BuildingTypeListSO>(nameof(BuildingTypeListSO));
+    buildingType = buildingTypeList.list[0];
   }
 
 
@@ -23,6 +25,16 @@ public class BuildingManager : MonoBehaviour
     if (Input.GetMouseButtonDown(0))
     {
       Instantiate(buildingType.prefab, GetMouseWorldPosition(), Quaternion.identity);
+    }
+
+    if (Input.GetKeyDown(KeyCode.T))
+    {
+      buildingType = buildingTypeList.list[0];
+    }
+
+    if (Input.GetKeyDown(KeyCode.Y))
+    {
+      buildingType = buildingTypeList.list[1];
     }
   }
 
