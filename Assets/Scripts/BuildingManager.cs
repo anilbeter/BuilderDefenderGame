@@ -11,6 +11,9 @@ public class BuildingManager : MonoBehaviour
 
   private void Start()
   {
+    // Looking for BuildingTypeList file in Resources folder
+    Resources.Load<BuildingTypeListSO>("BuildingTypeList");
+
     mainCamera = Camera.main;
   }
 
