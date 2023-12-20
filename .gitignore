@@ -9,3 +9,5 @@ UserSettings
 *.sln
 Assets/_/
 *.csproj
+obj/
+.vs/
