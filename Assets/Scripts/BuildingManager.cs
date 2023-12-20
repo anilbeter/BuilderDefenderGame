@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-  // Reference for WoodHarvester prefab
-  [SerializeField] private Transform pfWoodHarvester;
+
+  [SerializeField] private BuildingTypeSO buildingType;
   private Camera mainCamera;
 
   private void Start()
@@ -17,10 +17,9 @@ public class BuildingManager : MonoBehaviour
 
   private void Update()
   {
-    // Spawn WoodHarvester object at current mouse cursor position when clicked left mouse button, with no rotation(Quaternion.identity)
     if (Input.GetMouseButtonDown(0))
     {
-      Instantiate(pfWoodHarvester, GetMouseWorldPosition(), Quaternion.identity);
+      Instantiate(buildingType.prefab, GetMouseWorldPosition(), Quaternion.identity);
     }
   }
 
