@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272cb3db3cddf914f9e8e44e50a0d311, type: 3}
   m_Name: ResourceTypeListSO
   m_EditorClassIdentifier: 
-  list: []
+  list:
+  - {fileID: 11400000, guid: c86ecad3c238e974b976ca7c602064eb, type: 2}
+  - {fileID: 11400000, guid: e21e84430b086d74eaf273360199c833, type: 2}
+  - {fileID: 11400000, guid: 0c229835111e96345a2926b15863b117, type: 2}
