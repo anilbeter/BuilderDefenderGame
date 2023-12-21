@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class ResourceGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  private float timer;
+  private float timerMax;
 
-    // Update is called once per frame
-    void Update()
+  private void Awake()
+  {
+    timerMax = 1f;
+  }
+
+  private void Update()
+  {
+    timer -= Time.deltaTime;
+    if (timer <= 0f)
     {
-        
+      timer += timerMax;
+      Debug.Log("HEYO");
     }
+  }
 }
