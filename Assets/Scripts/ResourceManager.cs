@@ -21,8 +21,6 @@ public class ResourceManager : MonoBehaviour
   }
   */
 
-  private 
-
   private Dictionary<ResourceTypeSO, int> resourceAmountDictionary;
 
   private void Awake()
