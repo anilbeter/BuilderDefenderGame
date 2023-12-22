@@ -5,10 +5,29 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
+  public static ResourceManager Instance { get; private set; }
+
+  /*
+   * LONG WAY:
+  private static ResourceManager instance;
+  public static ResourceManager GetInstance()
+  {
+    return instance;
+  }
+
+  private static void SetInstance(ResourceManager set)
+  {
+    instance = set;
+  }
+  */
+
+  private 
+
   private Dictionary<ResourceTypeSO, int> resourceAmountDictionary;
 
   private void Awake()
   {
+    Instance = this;
     resourceAmountDictionary = new Dictionary<ResourceTypeSO, int>();
 
     ResourceTypeListSO resourceTypeList = Resources.Load<ResourceTypeListSO>(nameof(ResourceTypeListSO));
