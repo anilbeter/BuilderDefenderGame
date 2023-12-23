@@ -1,48 +1,43 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
+
   public static ResourceManager Instance { get; private set; }
 
-  /*
-   * LONG WAY:
-  private static ResourceManager instance;
-  public static ResourceManager GetInstance()
-  {
-    return instance;
-  }
 
-  private static void SetInstance(ResourceManager set)
-  {
-    instance = set;
-  }
-  */
+  public event EventHandler OnResourceAmountChanged;
+
 
   private Dictionary<ResourceTypeSO, int> resourceAmountDictionary;
 
   private void Awake()
   {
     Instance = this;
+
     resourceAmountDictionary = new Dictionary<ResourceTypeSO, int>();
 
-    ResourceTypeListSO resourceTypeList = Resources.Load<ResourceTypeListSO>(nameof(ResourceTypeListSO));
+    ResourceTypeListSO resourceTypeList = Resources.Load<ResourceTypeListSO>(typeof(ResourceTypeListSO).Name);
 
     foreach (ResourceTypeSO resourceType in resourceTypeList.list)
     {
-      //   Debug.Log(resourceType);
-      /*
-      Wood
-      Stone
-      Gold
-      */
-
       resourceAmountDictionary[resourceType] = 0;
-      // Wood, Stone ve Gold (resources)'ların value'yu 0'a eşitledim (Gold: 0, Wood: 0, ...)
     }
+
     TestLogResourceAmountDictionary();
+  }
+
+  private void Update()
+  {
+    if (Input.GetKeyDown(KeyCode.T))
+    {
+      ResourceTypeListSO resourceTypeList = Resources.Load<ResourceTypeListSO>(typeof(ResourceTypeListSO).Name);
+      AddResource(resourceTypeList.list[0], 2);
+      TestLogResourceAmountDictionary();
+    }
   }
 
   private void TestLogResourceAmountDictionary()
@@ -53,18 +48,18 @@ public class ResourceManager : MonoBehaviour
     }
   }
 
-  private void Update()
-  {
-    if (Input.GetKeyDown(KeyCode.T))
-    {
-      ResourceTypeListSO resourceTypeList = Resources.Load<ResourceTypeListSO>(nameof(ResourceTypeListSO));
-      AddResource(resourceTypeList.list[0], 2);
-      TestLogResourceAmountDictionary();
-    }
-  }
-
   public void AddResource(ResourceTypeSO resourceType, int amount)
   {
     resourceAmountDictionary[resourceType] += amount;
+
+    OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
+
+    TestLogResourceAmountDictionary();
   }
+
+  public int GetResourceAmount(ResourceTypeSO resourceType)
+  {
+    return resourceAmountDictionary[resourceType];
+  }
+
 }
